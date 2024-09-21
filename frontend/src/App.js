@@ -10,17 +10,9 @@ import Signup from "./Components/SignUp";
 import NewPassword from "./Components/NewPassword";
 import ResetPassword from "./Components/ResetPassword";
 import Subscription from "./Components/Subscription";
-import { useState, useEffect } from "react";
 
 function App() {
-  // State to store token
-  const [token, setToken] = useState(localStorage.getItem('token'));
-
-  // Update token in state whenever it changes in localStorage
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    setToken(storedToken);
-  }, []); // This dependency ensures the token updates whenever localStorage changes
+  const token = localStorage.getItem("token");  
 
   return (
     <main>

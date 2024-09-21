@@ -201,8 +201,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Optional: Customize allowed headers, methods, and other CORS settings
 # CORS_ALLOWED_ORIGINS = [
-#     "https://example.com",
-#     "https://subdomain.example.com",
+#     "http://localhost:3000",
 # ]
 
 APPEND_SLASH=True

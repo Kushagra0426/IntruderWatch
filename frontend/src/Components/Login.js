@@ -5,7 +5,7 @@ import GoogleSignIn from './GoogleAuth';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Constants from '../Constants';
 
-const Login = ({setToken}) => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [recaptchaToken, setRecaptchaToken] = useState(null); // State for reCAPTCHA token
@@ -33,7 +33,6 @@ const Login = ({setToken}) => {
           localStorage.setItem('token', response.data.access); // Store access token
           localStorage.setItem('refreshToken', response.data.refresh);  // Store refresh token
           localStorage.setItem('name', response.data.name); // Save name for later use
-          setToken(response.data.access); 
           navigate('/home'); // Redirect to home page
         } catch (error) {
           console.error('Login failed', error);

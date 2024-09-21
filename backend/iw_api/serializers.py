@@ -20,20 +20,10 @@ def verify_recaptcha(token):
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     first_name = serializers.CharField(required=True)
-    recaptcha = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('first_name', 'password', 'email', 'recaptcha')
-
-    def validate(self, attrs):
-        
-        # Validate reCAPTCHA token
-        recaptcha_token = attrs.pop('recaptcha', None)
-        if not verify_recaptcha(recaptcha_token):
-            raise serializers.ValidationError('Invalid reCAPTCHA. Please try again.')
-
-        return super().validate(attrs)
+        fields = ('first_name', 'password', 'email')
 
     def create(self, validated_data):
         user = User.objects.create(
