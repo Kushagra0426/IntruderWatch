@@ -20,11 +20,12 @@ function App() {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     setToken(storedToken);
-  }, [localStorage.getItem('token')]); // This dependency ensures the token updates whenever localStorage changes
+  }, []); // This dependency ensures the token updates whenever localStorage changes
 
   return (
     <main>
       <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={<Login />} exact />
         <Route path="/register" element={<Signup />} exact />
         <Route path="/reset-password" element={<ResetPassword />} exact />
