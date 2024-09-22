@@ -5,12 +5,14 @@ import Constants from '../Constants';
 const Subscription = () => {
     const backendUrl = Constants.BACKEND_URL;
 
+    const razorpayKeyId = Constants.RAZORPAY_KEY_ID;
+
     const handleCheckout = async () => {
         const response = await axios.post(`${backendUrl}/api/create-order/`);
         const { id } = response.data;
 
         const options = {
-            key: 'rzp_test_qceqDUMPAv8mrF', // Razorpay Key ID
+            key: razorpayKeyId,
             amount: 5000, // Amount in paisa (e.g., ₹50.00)
             currency: 'INR',
             name: 'Subscription Plan',

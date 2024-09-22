@@ -138,7 +138,7 @@ client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_S
 
 @api_view(['POST'])
 def create_order(request):
-    amount = 1000  # Amount in paisa (e.g., ₹10.00)
+    amount = 5000  # Amount in paisa (e.g., ₹10.00)
     currency = 'INR'
 
     # Create a Razorpay order
