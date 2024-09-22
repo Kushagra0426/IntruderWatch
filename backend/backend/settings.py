@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ['*']
 
@@ -175,6 +175,15 @@ RESET_PASSWORD_EMAIL_TEMPLATE = """
     <a href="{{ reset_link }}">{{reset_link}}</a>.
     <br><br>
     If you did not trigger this request, please ignore this email.
+</p>
+"""
+
+VERIFICATION_EMAIL_TEMPLATE = """
+<h3>Verify Email to Enable Receiving ALerts</h3>
+<p>
+    The Tracker named "{{ name }}" is created using your email address. If it was you please verify the email by clicking below button. If it was not you please ignore this email.
+    <br><br>
+    To Verify Email, <a href="{{ backend_url }}/api/tracker/verify/{{ email_token }}">Click here</a>.
 </p>
 """
 

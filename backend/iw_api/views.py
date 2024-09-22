@@ -6,7 +6,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import send_mail
-from .utils import createRandomUUID, get_location_data, send_alert_email, send_reset_password_email
+from .utils import createRandomUUID, get_location_data, send_alert_email, send_reset_password_email, send_verification_email
 from .serializers import TrackerSerializer,AlertSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -167,6 +167,7 @@ class TrackerView(APIView):
         serializer = TrackerSerializer(data = data)
         if serializer.is_valid():
             serializer.save()
+            send_verification_email(data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

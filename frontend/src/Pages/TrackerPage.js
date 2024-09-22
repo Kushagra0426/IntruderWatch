@@ -76,8 +76,12 @@ const TrackerPage = () => {
                   <tr>
                     <td>Email</td>
                     <td>
-                      <span>{tracker.info.email} </span>
-                      <Badge bg="success">Verified</Badge>
+                    <span>{tracker.info.email} </span>
+                      {tracker.info.is_email_verified ? (
+                        <Badge bg="success">Verified</Badge>
+                      ) : (
+                        <Badge bg="warning">Verification Pending</Badge>
+                      )}
                     </td>
                   </tr>
                   <tr>

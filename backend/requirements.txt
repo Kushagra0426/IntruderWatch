@@ -31,3 +31,5 @@ wcwidth==0.2.6
 reportlab
 mysqlclient
 razorpay
+python-dotenv
+gunicorn

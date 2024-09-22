@@ -1,4 +1,4 @@
-from backend.settings import IPGEOLOCATION_API_KEY, FRONTEND_URL, ALERT_EMAIL_TEMPLATE, BACKEND_URL, RESET_PASSWORD_EMAIL_TEMPLATE
+from backend.settings import IPGEOLOCATION_API_KEY, FRONTEND_URL, ALERT_EMAIL_TEMPLATE, BACKEND_URL, RESET_PASSWORD_EMAIL_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE
 import uuid
 import requests
 from django.core.mail import send_mail
@@ -31,6 +31,25 @@ def send_reset_password_email(reset_link,email):
 
     receipient_list = [email]
     send_mail(subject, None, None, receipient_list, html_message=html_message)
+
+def send_verification_email(tracker):
+        # send alert email
+        subject = 'Verify your Email to Enable Tracker ' + tracker['name'] 
+        html_template = VERIFICATION_EMAIL_TEMPLATE
+
+        template = Template(html_template)
+
+        # Prepare the context data with the actual values
+        context = Context({
+            'name': tracker["name"],
+            'email_token': tracker["email_token"],
+            'backend_url': BACKEND_URL
+        })
+
+        html_message = format_html(template.render(context))
+
+        recipient_list = [tracker['email']]
+        send_mail(subject, None, None, recipient_list, html_message=html_message)
 
 def send_alert_email(tracker, alert):
         # send alert email
